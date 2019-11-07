@@ -525,7 +525,7 @@ window.open("https://github.com/GeniusXD/KrunkerXD", '_self')
 </body>`
 
              var version = script.match(/\w+\['exports'\]=(0[xX][0-9a-fA-F]+);/)[1];
-              var fstyle = "1";
+              var fstyle = "0x14d41";
              if (version !== fstyle) {
                  alert("This version is of cheat is outdated!\nI think the game updated!\n\nWaiting for 200botsga to unpatch it!");
                 document.write(xd);
