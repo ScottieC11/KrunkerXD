@@ -11,7 +11,7 @@
 // @grant        none
 // ==/UserScript==
 
-alert('KrunkerXD\nCheats for Krunker.io v1.8.6\n\nThis cheat/hack was unpatched and improved by 200bots.ga.\n\nControls:\n-press `c` toggle open mod menu\n-press `alt` to move mod menu');
+alert('KrunkerXD\nCheats for Krunker.io v1.8.6\n\nThis cheat/hack was unpatched and improved by 200bots.ga.\n\nControls:\n-press `c` to toggle mod menu\n-press `alt` to move mod menu');
 WebFont.load({
     google: {
        families: ['Roboto']
