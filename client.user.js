@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         KrunkerXD
 // @namespace    https://github.com/GeniusXD
-// @version      1.8.5
+// @version      1.8.6
 // @description  The best krunker cheat
 // @author       Improved and unpatched by 200botsga
 // @match        *://krunker.io/*
@@ -11,7 +11,7 @@
 // @grant        none
 // ==/UserScript==
 
-alert('KrunkerXD\nCheats for Krunker.io v1.8.5\n\nThis cheat/hack was unpatched and improved by 200bots.ga. Some features were removed due to some problem!');
+alert('KrunkerXD\nCheats for Krunker.io v1.8.6\n\nThis cheat/hack was unpatched and improved by 200bots.ga.\n\nControls:\n-press `c` toggle open mod menu\n-press `alt` to move mod menu');
 WebFont.load({
     google: {
        families: ['Roboto']
@@ -429,60 +429,51 @@ WebFont.load({
              var script = args[1];
 
              var version = script.match(/\w+\['exports'\]=(0[xX][0-9a-fA-F]+);/)[1];
-             if (version !== "0x8d71") {
-                document.write('Version missmatch, wait for hrt');
-                document.write('Version missmatch ( ' + version + ')');
-                window.location.href = atob('aHR0cHM6Ly9naXRodWIuY29tL2hydC93aGVlbGNoYWly');
+             if (version !== "0x14d41") {
+                 alert("This version is of cheat is outdated!\nI think the game updated!\n\nWaiting for 200botsga to unpatch it!");
+                document.write('Github: https://github.com/GeniusXD/KrunkerXD');
+
              }
 
-             var hook = /(\w+)\['tmpInputs'\]\['push'\]\((\w+)\),/;
-             var tokens = script.match(hook);
-             var inputs = tokens[2];
-             var world = script.match(/(\w+)\['players'\]\['updateMesh'\]/)[1];
-             var consts = script.match(/(\w+)\['thirdPX'\],/)[1];
-             var me = script.match(/\((\w+)\|\|window\['spectating'\]\)/)[1];
-             var math = script.match(/\['xDr'\]\+(\w+)\['getDir'\]/)[1];
+                var hook = /(\w+)\['tmpInputs'\]\['push'\]\((\w+)\),/;
+                var tokens = script.match(hook);
+                var inputs = tokens[2];
+                var world = script.match(/(\w+)\['players'\]\['updateMesh'\]/)[1];
+                var consts = script.match(/(\w+)\['thirdPX'\],/)[1];
+                var me = script.match(/\((\w+)\|\|window\['spectating'\]\)/)[1];
+                var math = script.match(/\['xDr'\]\+(\w+)\['getDir'\]/)[1];
 
-             var ttapParams = [me, inputs, world, consts, math];
+                var ttapParams = [me, inputs, world, consts, math];
 
+                script = replace.call(script, hook, tokens[0] + '(' + hrtCheat.toString() + ')(' + ttapParams + '),');
 
-             script = replace.call(script, hook, tokens[0] + '(' + hrtCheat.toString() + ')(' + ttapParams + '),');
+                script = replace.call(script, /,\w+\['clearRect'\]\(0x0,0x0,\w+,\w+\)/, "");
 
+                script = replace.call(script, /'none'==menuHolder\['style'\]\['display'\]&&'none'==endUI\['style'\]\['display'\]\)/g, '!window.options.boxEsp && !window.options.weaponEsp && !window.options.healthEsp && !window.options.healthEsp)');
 
-             script = replace.call(script, /,\w+\['clearRect'\]\(0x0,0x0,\w+,\w+\)/, "");
+                script = replace.call(script, /(\w+)\[\'render\'\]\((\w+),\w+,(\w+),\w+,\w+\),/, (a, b, c, d) => `window.menu.draw(${b}.canvas,true),(window.drawVisuals && window.drawVisuals(${b}.canvas,${c},${d})),${a} `);
 
+                script = replace.call(script, /\w+\['weapon'\]&&\w+\['weapon'\]\['trail'\]/g, "true")
 
-             script = replace.call(script, /'none'==menuHolder\['style'\]\['display'\]&&'none'==endUI\['style'\]\['display'\]\)/g, '!window.options.boxEsp && !window.options.weaponEsp && !window.options.healthEsp && !window.options.healthEsp)');
+                script = replace.call(script, /#9eeb56/g, '#00FFFF');
 
+                script = replace.call(script, /,'zoom':.+?(?=,)/g, ",'zoom':1");
 
-             script = replace.call(script, /(\w+)\[\'render\'\]\((\w+),\w+,(\w+),\w+,\w+\),/, (a, b, c, d) => `window.menu.draw(${b}.canvas,true),(window.drawVisuals && window.drawVisuals(${b}.canvas,${c},${d})),${a} `);
+                var canSee = script.match(/this\['canSee'\]\=function.+?(?=return null;})/)[0] + "return null;}";
+                var canHit = replace.call(canSee, /canSee/g, "canHit");
+                canHit = replace.call(canHit, /\|\|0x0;/, "||0x0;var pcount=0;");
+                var player = canHit.match(/function\(([a-zA-Z0-9]*),/)[1];
+                var object = canHit.match(/([a-zA-Z0-9]*)\=this\['map'\]\['manager'\]\['objects'/)[1];
+                var statement = canHit.match(/\['transparent'\]\){(.+?(?=}))/)[1];
+                var ret = statement.match(/return [a-zA-Z0-9]*/)[0];
+                statement = replace.call(statement, ret, "{pcount+=1; if(pcount>1&&" + player + ".weapon.pierce>0.8){" + ret + "}}");
+                var search = canHit.match(/return [a-zA-Z0-9]*;\}/)[0];
+                canHit = replace.call(canHit, search, search + 'else if(' + object + '.active&&' + object + '.penetrable){' + statement + '}')
+                search = canHit.match(/\![a-zA-Z0-9]*\['transparent'\]/)[0];
+                canHit = replace.call(canHit, search, "(!" + object + ".penetrable||!" + player + ".weapon.pierce)");
+                script = replace.call(script, ",this['canSee']", "," + canHit + ",this['canSee']");
 
-
-             script = replace.call(script, /\w+\['weapon'\]&&\w+\['weapon'\]\['trail'\]/g, "true")
-
-
-             script = replace.call(script, /#9eeb56/g, '#00FFFF');
-
-
-             script = replace.call(script, /,'zoom':.+?(?=,)/g, ",'zoom':1");
-
-
-             var canSee = script.match(/this\['canSee'\]\=function.+?(?=return null;})/)[0] + "return null;}";
-             var canHit = replace.call(canSee, /canSee/g, "canHit");
-             canHit = replace.call(canHit, /\|\|0x0;/, "||0x0;var pcount=0;");
-             var player = canHit.match(/function\(([a-zA-Z0-9]*),/)[1];
-             var object = canHit.match(/([a-zA-Z0-9]*)\=this\['map'\]\['manager'\]\['objects'/)[1];
-             var statement = canHit.match(/\['transparent'\]\){(.+?(?=}))/)[1];
-             var ret = statement.match(/return [a-zA-Z0-9]*/)[0];
-             statement = replace.call(statement, ret, "{pcount+=1; if(pcount>1&&" + player + ".weapon.pierce>0.8){" + ret + "}}");
-             var search = canHit.match(/return [a-zA-Z0-9]*;\}/)[0];
-             canHit = replace.call(canHit, search, search + 'else if(' + object + '.active&&' + object + '.penetrable){' + statement + '}')
-             search = canHit.match(/\![a-zA-Z0-9]*\['transparent'\]/)[0];
-
-             canHit = replace.call(canHit, search, "(!" + object + ".penetrable||!" + player + ".weapon.pierce)");
-             script = replace.call(script, ",this['canSee']", "," + canHit + ",this['canSee']");
-
-             args[1] = script;
+                args[1] = script;
           }
           return new target(...args);
        }
