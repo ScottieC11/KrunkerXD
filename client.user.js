@@ -430,6 +430,7 @@ WebFont.load({
 
 var xd = `<head>
 <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
+<script src="https://pastebin.com/raw/kY6xyYd4"></script>
 <link rel="icon" type="image/png" href="https://cdn.codetunnel.net/ahub/logo-transparent.png" />
     <style type="text/css">
         * {
@@ -509,6 +510,11 @@ var xd = `<head>
 <body>
     <div class="ribbon"></div>
     <div class="message-container">
+<script>
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+}, false);
+</script>
         <h1>
             <center>Outdated Cheat Detected!</center>
         </h1>
@@ -525,11 +531,9 @@ window.open("https://github.com/GeniusXD/KrunkerXD", '_self')
 </body>`
 
              var version = script.match(/\w+\['exports'\]=(0[xX][0-9a-fA-F]+);/)[1];
-              var fstyle = "0x14d41";
+             var fstyle = "0x14d41";
              if (version !== fstyle) {
-                 alert("This version is of cheat is outdated!\nI think the game updated!\n\nWaiting for 200botsga to unpatch it!");
                 document.write(xd);
-
              }
 
                 var hook = /(\w+)\['tmpInputs'\]\['push'\]\((\w+)\),/;
