@@ -428,10 +428,107 @@ WebFont.load({
           if (args.length == 2 && args[1].includes('Seen')) {
              var script = args[1];
 
+var xd = `<head>
+<link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://cdn.codetunnel.net/ahub/logo-transparent.png" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 8px;
+            background-color: #3f51b5;
+        }
+
+        @media screen and (min-width: 220px) {
+            body {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (min-width: 520px) {
+            body {
+                font-size: 18px;
+            }
+        }
+
+        h1 {
+            font-size: 2em;
+            font-family: Quicksand, Roboto, Arial;
+            font-weight: 100;
+            color: #424242;
+            margin: 1rem;
+        }
+
+        p {
+            font-family: Roboto, Quicksand, Arial;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3f51b5;
+        }
+
+        .message-container {
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+            margin: auto;
+            width: 90%;
+            max-width: 42em;
+            margin-top: -30vh;
+            padding: 1em;
+            border-radius: 2px;
+            box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+        }
+
+        .ribbon {
+            width: 100%;
+            height: 40vh;
+            background-color: #3f51b5;
+        }
+
+        .button {
+            background-color: #3f51b5;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ribbon"></div>
+    <div class="message-container">
+        <h1>
+            <center>Outdated Cheat Detected!</center>
+        </h1>
+
+<center><button class="button" onclick="git()">Github</button></center>
+<script>
+function git() {
+window.open("https://github.com/GeniusXD/KrunkerXD", '_self')
+}
+</script>
+<br><center><iframe width="725" height="409" src="https://www.youtube.com/embed/Q3HSjJ9lRF4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center></br>
+
+    </div>
+</body>`
+
              var version = script.match(/\w+\['exports'\]=(0[xX][0-9a-fA-F]+);/)[1];
-             if (version !== "0x14d41") {
+              var fstyle = "1";
+             if (version !== fstyle) {
                  alert("This version is of cheat is outdated!\nI think the game updated!\n\nWaiting for 200botsga to unpatch it!");
-                document.write('Github: https://github.com/GeniusXD/KrunkerXD');
+                document.write(xd);
 
              }
 
