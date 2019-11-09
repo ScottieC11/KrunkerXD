@@ -2,15 +2,15 @@
 The best Krunker.io cheats
 
 ## Version
-1.8.6
+1.8.8
 
-## Controls
+## Controls (disabled in v1.8.8)
 * `c` to toggle mod menu
 * `alt` to move mod menu
 
 ## Change Log
-* New version - v1.8.6
-* Changed the *outdated page* - looks more better
+* New version - v1.8.8
+* Some features were removed
 
 ## Discord Server
 [200bots.ga](http://200bots.ga)
