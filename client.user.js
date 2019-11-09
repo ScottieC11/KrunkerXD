@@ -375,3 +375,4 @@ window.open("https://github.com/GeniusXD/KrunkerXD", '_self')
     conceal(original_Function, hook_Function);
     Function = hook_Function;
 })()
+//https
